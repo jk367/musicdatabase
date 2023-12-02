@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>Results for "{{query}}" in {{domain}}</h1>
+
+   <div>
+     {% for n in data %}
+        {% if domain == "Releases" %}
+        <div><a href="/release?upc={{n[2]}}">{{n[0]}} ({{n[1]}}</a></div>
+        {% elif domain == "Songs" %}
+        <div><a href="/song?isrc={{n[3]}}">{{n[0]}}</a></div>
+        {% elif domain == "Artists" %}
+        <div><a href="/artist?name={{n[0]}}&dob={{n[1]}}">{{n[0]}}</a></div>
+        {% elif domain == "Labels" %}
+        <div><a href="/label?name={{n[0]}}&year_founded={{n[1]}}">{{n[0]}}</a></div>
+        {% elif domain == "Genres" %}
+        <div><a href="/genre?name={{n[0]}}">{{n[0]}}</a></div>
+        {% elif domain == "Instruments" %}
+        <div><a href="/instrument?name={{n[0]}}">{{n[0]}}</a></div>
+        {% endif %}
+     {% endfor %}
+   </div>
+
+{% endblock %}

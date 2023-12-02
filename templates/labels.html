@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div class="row large">
+		<div class="col-md-8">
+			<h1>{{ label[0][0] }}</h1>
+		</div>
+		<div class="col-md-2">
+			({{label[0][1]}})
+		</div>
+		<div class="col-md-2">
+			({{label[0][2]}})
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Albums released</h2>
+			</div>
+			<div class="row">
+				{% for n in albums %}
+				<div class="col-md-3">{{n[1]}}</div>
+				<div class="col-md-6"><a href="/release?upc={{n[2]}}">{{n[0]}}</a></div>
+				<div class="col-md-3">{{n[3]}}</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Artists signed</h2>
+			</div>
+			<div class="row">
+				{% for n in artists %}
+				<div class="col-md-12"><a href="/artist?name={{n[0]}}&dob={{n[1]}}">{{n[0]}}</a>: {{n[2].strftime('%Y-%m-%d')}} to {% if n[3] %} {{n[3].strftime('%Y-%m-%d')}} {% endif %}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

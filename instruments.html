@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div class="row large">
+		<div class="col-md-12">
+			<h1>{{ instrument[0][0] }}</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			Range: {{instrument[0][2]}} to {{instrument[0][1]}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Played by</h2>
+			</div>
+			<div class="row">
+				{% for n in artists %}
+				<div class="col-md-12"><a href="/artist?name={{n[0]}}&dob={{n[1]}}">{{n[0]}}</a></div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Genres</h2>
+			</div>
+			<div class="row">
+				{% for n in genres %}
+				<div class="col-md-12"><a href="/genre?name={{n[0]}}">{{n[0]}}</a></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div class="row large">
+		<div class="col-md-10">
+			<h1>{{ release[0][0] }}</h1>
+		</div>
+		<div class="col-md-2">
+			({{release[0][1]}})
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<a href="label?name={{release[0][3]}}&year_founded={{release[0][4]}}">{{release[0][3]}} {{release[0][5]}}</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/{{release[0][6]}}?utm_source=generator" width="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media;" loading="lazy"></iframe>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<h2>Songs</h2>
+			</div>
+			<div class="row">
+				{% for n in songs %}
+				<div class="col-md-3">{{n[1]}}</div>
+				<div class="col-md-6"><a href="/song?isrc={{n[0]}}">{{n[2]}}</a></div>
+				<div class="col-md-3">{{(n[3]/60) | round|int}}:{{'{:02d}'.format(n[3]%60)}}</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<h2>Artists</h2>
+			</div>
+			<div class="row">
+				{% for n in artists %}
+				<div class="col-md-12"><a href="/artist?name={{n[0]}}&dob={{n[1]}}">{{n[0]}}</a></div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<h2>Genres</h2>
+			</div>
+			<div class="row">
+				{% for n in genres %}
+				<div class="col-md-12"><a href="/genre?name={{n[0]}}">{{n[0]}}</a></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

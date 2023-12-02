@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div class="row large">
+		<div class="col-md-10">
+			<h1>{{ song[0][0] }}</h1>
+		</div>
+		<div class="col-md-2">
+			({{song[0][2]}})
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			Run time: {{(song[0][1]/60) | round|int}}:{{'{:02d}'.format(song[0][1]%60)}}
+		</div>
+	</div>
+
+	<div class="row">
+		<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{song[0][4]}}?utm_source=generator" width="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media;" loading="lazy"></iframe>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Included on</h2>
+			</div>
+			<div class="row">
+				{% for n in albums %}
+				<div class="col-md-12">Track {{n[1]}} on <a href="/release?upc={{n[0]}}">{{n[2]}}</a> ({{n[3]}})</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<h2>Written by</h2>
+			</div>
+			<div class="row">
+				{% for n in artists %}
+				<div class="col-md-12"><a href="/artist?name={{n[0]}}&dob={{n[1]}}">{{n[0]}}</a></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
